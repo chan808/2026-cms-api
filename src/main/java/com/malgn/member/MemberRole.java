@@ -1,4 +1,4 @@
-package com.malgn.domain.member;
+package com.malgn.member;
 
 public enum MemberRole {
     ADMIN,

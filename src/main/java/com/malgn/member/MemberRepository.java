@@ -1,4 +1,4 @@
-package com.malgn.domain.member;
+package com.malgn.member;
 
 import java.util.Optional;
 
