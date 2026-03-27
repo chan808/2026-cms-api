@@ -1,3 +1,5 @@
--- TODO data
--- example
-insert into members (name, last_modified_date) values('bob', now());
+INSERT INTO members (username, password, role, created_date)
+VALUES ('admin', '$2a$10$kJLfbvNNxvpz1irlsSWeoOwePW7OA8QaUgtr8xuqeEPye0wX9sEwm', 'ADMIN', NOW());
+
+INSERT INTO members (username, password, role, created_date)
+VALUES ('user', '$2a$10$ruevcYmNtJ1Pgy3Vfi15levYL.68/hAgqSF3hpYlRSUz970w2R9pu', 'USER', NOW());

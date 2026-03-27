@@ -52,6 +52,11 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
+    // jwt
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+
     // querydsl
     implementation("io.github.openfeign.querydsl:querydsl-jpa:${queryDslVersion}")
     annotationProcessor("io.github.openfeign.querydsl:querydsl-apt:${queryDslVersion}:jakarta")
