@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface ContentRepository extends JpaRepository<Content, Long> {
 
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query("UPDATE Content c SET c.viewCount = c.viewCount + 1 WHERE c.id = :id")
     void incrementViewCount(@Param("id") Long id);
 }
