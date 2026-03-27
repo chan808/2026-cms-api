@@ -57,9 +57,10 @@ class AuthControllerTest {
     }
 
     @Test
-    @DisplayName("토큰 없이 API 접근 시 401을 반환한다")
+    @DisplayName("토큰 없이 API 접근 시 401과 JSON 에러 응답을 반환한다")
     void accessWithoutToken() throws Exception {
         mockMvc.perform(get("/contents"))
-                .andExpect(status().isUnauthorized());
+                .andExpect(status().isUnauthorized())
+                .andExpect(jsonPath("$.code").value("AUTHENTICATION_FAILED"));
     }
 }

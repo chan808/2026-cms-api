@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.malgn.common.exception.ErrorCode;
 import com.malgn.common.security.JwtAuthenticationFilter;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -37,8 +38,14 @@ public class SecurityConfiguration {
         http.cors(AbstractHttpConfigurer::disable);
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.exceptionHandling(ex -> ex
-                .authenticationEntryPoint((request, response, e) ->
-                        response.sendError(HttpServletResponse.SC_UNAUTHORIZED)));
+                .authenticationEntryPoint((request, response, e) -> {
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    response.setContentType("application/json;charset=UTF-8");
+                    response.getWriter().write(String.format(
+                            "{\"code\":\"%s\",\"message\":\"%s\"}",
+                            ErrorCode.AUTHENTICATION_FAILED.name(),
+                            ErrorCode.AUTHENTICATION_FAILED.getMessage()));
+                }));
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
